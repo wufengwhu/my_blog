@@ -1,0 +1,299 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BI 数据开发门户</title>
+    <link href="../static/css/bootstrap3/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap3/bootstrap-theme.min.css"
+          rel="stylesheet" id="bs-theme-stylesheet">
+    <link href="../static/assets/css/docs.min.css" rel="stylesheet">
+    <link href="../static/css/biportal.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootgrid/jquery.bootgrid.css">
+    <link href="../static/css/bootstrap-dialog/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../static/css/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/jquery-steps/jquery.steps.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://bi.yihaodian.com.cn">
+                
+                
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                BI-Portal
+            </a>
+        </div>
+
+        <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active dropdown">
+                    <a class="dropdown-toggle" role="button" id="data_deploy1"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        数据平台
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu " aria-labelledby="data_deploy1">
+                        <li class="disabled"><a href="#">查询分析器(Hive1)</a></li>
+                        <li class="disabled"><a href="#">查询分析器(Hive3-Spark)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">历史预览/下载</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">应用开发</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">数据市场</a></li>
+                <li><a href="http://wiki.yihaodian.com.cn/mediawiki/index.php/Realtime">实时数据</a></li>
+                <li><a href="http://wiki.yihaodian.com.cn/mediawiki/index.php/Bigdata">帮助指南</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><p class="navbar-text">Signed in as Wu Feng
+                    <span class="sr-only">(current)</span></p></li>
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" id="personal_info"
+                       data-toggle="dropdown" aria-label="View profile and more" aria-haspopup="true"
+                       aria-expanded="true">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="personal_info">
+                        <li><a href="#" onclick="f_logout()">退出</a></li>
+                        <li><a href="http://bi.yihaodian.com.cn/main/doHelp.action">帮助</a></li>
+                        <li><a href="mailto:BI_Operation@yhd.com" style="color:red;font-weight: bold;">报障</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-md-10" role="main">
+                <div class="bs-docs-section">
+                    <h1 id="js-data-platform-control" class="page-header">
+                        菜单
+                    </h1>
+
+                    <h3 id="js-menu-configuration">
+                        菜单配置
+                    </h3>
+
+                    <h3 id="js-menu-control">
+                        菜单控制
+                    </h3>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="js-data-deploy" class="page-header">
+                        开发
+                    </h1>
+
+                    <h3 id="js-analyser-hive">
+                        Hive Sql 查询分析
+                    </h3>
+
+                    <h3 id="js-analyser-spark">
+                        Spark Sql 查询分析
+                    </h3>
+
+                    <h3 id="js-preview-download">
+                        历史预览<span><code>/</code></span>下载
+                    </h3>
+
+                    <h3 id="js-application-deploy">
+                        应用开发
+                    </h3>
+                </div>
+
+                <div class="bs-docs-section">
+                    <h1 id="js-schedule" class="page-header">
+                        调度系统
+                    </h1>
+                </div>
+
+                <div class="bs-docs-section">
+                    <h1 id="js-data-transfer" class="page-header">
+                        <i class="fa fa-exchange"> 数据交换</i>
+
+                    </h1>
+
+                    <h3 id="js-database-configuration">
+                        数据库配置
+                    </h3>
+
+                    <h3 id="js-database-access-control">
+                        数据库访问控制
+                    </h3>
+
+                    <h3 id="js-transfer-task">
+                        <i class="fa fa-tasks"> 任务列表</i>
+                    </h3>
+
+                    <table id="grid-transfer-data"
+                           class="table table-condensed table-hover table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th data-column-id="id" data-type="numeric" data-identifier="true"
+                                data-headerCssClass="col-xs-1"
+                                data-cssClass="col-xs-1" data-headerAlign="center" data-align="center">ID
+                            </th>
+                            <th data-column-id="description" data-cssClass="col-md-3" data-headerCssClass="col-md-3">
+                                Action描述
+                            </th>
+                            <th data-column-id="SRC_DB_TAG">源库</th>
+                            <th data-column-id="SRC_DB_TABLE">源表</th>
+                            <th data-column-id="DST_DB_TAG">目标库</th>
+                            <th data-column-id="SRC_DB_TABLE">目标表</th>
+                            <th data-column-id="create_time" data-order="desc" data-visible="false">创建时间</th>
+                            <th data-column-id="owner" data-visible="false">创建人</th>
+                            <th data-column-id="updt_time" data-order="desc" data-visible="false">修改时间</th>
+                            <th data-column-id="editor" data-visible="false">编辑人</th>
+                            <th data-column-id="GID" data-visible="false" data-class="disabled">GID</th>
+                            <th data-column-id="commands" data-formatter="commands" data-sortable="false"
+                                data-align="center" data-headerAlign="center">操作
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1543</td>
+                            <td>CIS项目末级类目UV及销量接口表</td>
+                            <td>oracle-interface</td>
+                            <td>interface.INF_AD_CATEG_LVL_SALE_DETL</td>
+                            <td>hive-db</td>
+                            <td>pms.cate_uv_sale_detail_data</td>
+                            <td>2015-07-14 17:22:16</td>
+                            <td>hanzhengbo</td>
+                            <td>2015-08-10 13:30:10</td>
+                            <td>liuxuecheng</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>1458</td>
+                            <td>同步pis.t_product到hive ods</td>
+                            <td>mysql-pis-slave</td>
+                            <td>T_PRODUCT</td>
+                            <td>hive-db</td>
+                            <td>ods.t_product</td>
+                            <td>2015-06-23 11:02:34</td>
+                            <td>hanzhengbo</td>
+                            <td>2015-06-24 13:12:27</td>
+                            <td>hanzhengbo</td>
+                            <td>5</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-2" role="complementary">
+                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+                    <ul class="nav bs-docs-sidenav">
+                        <li class>
+                            <a href="#js-data-platform-control">菜单</a>
+                            <ul class="nav">
+                                <li class>
+                                    <a href="#js-menu-configuration">菜单配置</a>
+                                </li>
+                                <li class>
+                                    <a href="#js-menu-control">菜单控制</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class>
+                            <a href="#js-data-deploy">开发</a>
+                            <ul class="nav">
+                                <li class>
+                                    <a href="#js-analyser-hive">Hive Sql 查询分析</a>
+                                </li>
+                                <li class>
+                                    <a href="#js-analyser-spark">Spark Sql 查询分析</a>
+                                </li>
+                                <li class>
+                                    <a href="#js-preview-download">历史预览<span><code>/</code></span>下载</a>
+                                </li>
+                                <li class>
+                                    <a href="#js-application-deploy">应用开发</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class>
+                            <a href="#js-schedule">调度系统</a>
+                        </li>
+                        <li class>
+                            <a href="#js-data-transfer">数据交换</a>
+                            <ul class="nav">
+                                <li class>
+                                    <a href="#js-database-configuration">
+                                        数据库配置
+                                    </a>
+                                </li>
+                                <li class>
+                                    <a href="#js-database-access-control">数据库访问控制</a>
+                                </li>
+                                <li class>
+                                    <a href="#js-transfer-task">
+                                        任务列表
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bs-docs-footer" role="contentinfo">
+        <div class="container">
+            <ul class="bs-docs-footer-links">
+                <li><a href="#">纽海信息（上海）技术有限公司</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">技术文档</a></li>
+            </ul>
+            <div class=""></div>
+        </div>
+    </footer>
+
+    <script src="../static/assets/js/docs.min.js"></script>
+    <script src="../static/js/bootgrid/jquery.bootgrid.js"></script>
+    <script src="../static/js/bootstrap-dialog/bootstrap-dialog.min.js"></script>
+    <script src="../static/js/bi-data-trans.js"></script>
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script>!function (e, t, a, n, c, o, s) {
+        e.GoogleAnalyticsObject = c, e[c] = e[c] || function () {
+                    (e[c].q = e[c].q || []).push(arguments)
+                }, e[c].l = 1 * new Date, o = t.createElement(a), s = t.getElementsByTagName(a)[0], o.async = 1, o.src = n, s.parentNode.insertBefore(o, s)
+    }(window, document, "script", "//www.google-analytics.com/analytics.js", "ga"), ga("create", "UA-146052-10", "getbootstrap.com"), ga("send", "pageview");</script>
+
+    <script>
+        $("#refreshing-btn").on("click", function () {
+            var b = $(this);
+            b.button("refreshing"), setTimeout(function () {
+                b.button("reset")
+            }, 3e3)
+        })
+    </script>
+
+    <script>
+        var _gauges = _gauges || [];
+        !function () {
+            var e = document.createElement("script");
+            e.async = !0, e.id = "gauges-tracker", e.setAttribute("data-site-id", "4f0dc9fef5a1f55508000013"), e.src = "//secure.gaug.es/track.js";
+            var t = document.getElementsByTagName("script")[0];
+            t.parentNode.insertBefore(e, t)
+        }();
+    </script>
+</body>
+</html>

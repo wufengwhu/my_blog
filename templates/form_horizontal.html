@@ -1,0 +1,62 @@
+{% extends 'base_wide_dialog.html' %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+    <script src="/static/js/jquery-steps/modernizr-2.6.2.min.js"></script>
+    <script src="/static/js/jquery-steps/jquery.cookie-1.3.1.js"></script>
+    <script src="/static/js/jquery-steps/jquery.steps.js"></script>
+    <script src="/static/js/bi-data-trans-form.js"></script>
+
+    <form role="form" class="form-horizontal" method="post"
+          id="data-transfer-form" action="#" onsubmit="return onFinished()">
+        {% csrf_token %}
+        <h3>基础配置</h3>
+
+        <fieldset>
+            <legend>基础信息
+                <p class="text-danger" id="error_message_db" hidden="hidden">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    暂不支持同种数据库间的操作</p>
+            </legend>
+            {% bootstrap_field form.db_s_infos layout="horizontal" %}
+            {% bootstrap_field form.db_d_infos layout="horizontal" %}
+            {% bootstrap_field form.extract_options layout="horizontal" %}
+            {% bootstrap_field form.extract_duration layout="horizontal" %}
+            {% bootstrap_field form.job_description layout="horizontal" %}
+        </fieldset>
+
+        <fieldset>
+            <legend>源库信息</legend>
+            {% bootstrap_field form.s_table_name layout="horizontal" %}
+            {% bootstrap_field form.dynamic_parameter_list layout="horizontal" %}
+            {% bootstrap_field form.select_sql layout="horizontal" %}
+            {% bootstrap_field form.hive_pretreatment_sql layout="horizontal" %}
+            {% bootstrap_field form.hive_posttreatment_sql layout="horizontal" %}
+            {% bootstrap_field form.mr_job_parallelism layout="horizontal" %}
+        </fieldset>
+        <h3>源库配置</h3>
+
+
+        <h3>目标库配置</h3>
+        <fieldset>
+            <legend>目标库信息</legend>
+            {% bootstrap_field form.d_table_name layout="horizontal" %}
+            {% bootstrap_field form.d_table_field_list layout="horizontal" %}
+            {% bootstrap_field form.is_transaction layout="horizontal" set_disabled=True %}
+            {% bootstrap_field form.d_pretreatment_sql layout="horizontal" %}
+            {% bootstrap_field form.d_posttreatment_sql layout="horizontal" %}
+
+        </fieldset>
+
+        <h3>调度配置</h3>
+        <fieldset>
+            <legend>调度信息</legend>
+            <p class="text-info">本页配置任务调度信息</p>
+        </fieldset>
+
+        {% bootstrap_button "保存" button_type="submit" button_class="btn-primary" %}
+
+    </form>
+
+{% endblock %}

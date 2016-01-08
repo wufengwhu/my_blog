@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 """
 Django settings for my_blog project.
 
@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -27,25 +27,44 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
+SITE_ID = 1
+
+# Settings used by Userena
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+AUTH_PROFILE_MODULE = 'profiles.Profile'
+USERENA_DISABLE_PROFILE_LIST = True
+USERENA_MUGSHOT_SIZE = 140
+
+# Needed for Django guardian
+ANONYMOUS_USER_ID = -1
+
 INSTALLED_APPS = (
-    'bootstrap_admin',#要在django.contrib.admin前面
+    # 'bootstrap_admin',  # 要在django.contrib.admin前面
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
     'article',
+    'userena',
+    'guardian',
+    'easy_thumbnails',
+    'biportal',
+    'profiles',
 )
-
 from django.conf import global_settings
+
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
+USERENA_ACTIVATION_REQUIRED = False
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,7 +78,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'my_blog.urls'
-#尝试这种写法
+
+# 尝试这种写法
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 TEMPLATE_DIRS = (
     TEMPLATE_PATH,
@@ -70,7 +90,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             'templates',
-            ],
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,8 +103,27 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'my_blog.wsgi.application'
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\', '/'),
+    os.path.join(os.path.dirname(__file__), '../static/assets/').replace('\\', '/'),
+    '/Users/fengwu/my_blog/static',
+    '/Users/fengwu/my_blog/static/assets',
+    #    os.path.join( PROJECT_PATH,  'static').replace('\\','/'),
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+# Additional locations of static files
 
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -96,13 +135,12 @@ DATABASES = {
     }
 }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-CN'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -110,9 +148,28 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
 
+# Settings for django-bootstrap3
+BOOTSTRAP3 = {
+    # The URL to the jQuery JavaScript file
+    'jquery_url': '/static/js/jquery.min.js',
+
+    # The Bootstrap base URL
+    'css_url': '/static/css/bootstrap3/bootstrap.min.css',
+    'theme_url': '/static/css/bootstrap3/bootstrap-theme.min.css',
+    'javascript_url': '/static/js/bootstrap.min.js',
+    'set_required': False,
+    'error_css_class': 'bootstrap3-error',
+    'required_css_class': 'bootstrap3-required',
+    'success_css_class': 'bootstrap3-bound',
+    'javascript_in_head': True,
+    # Label class to use in horizontal forms
+    'horizontal_label_class': 'col-md-2',
+
+    # Field class to use in horizontal forms
+    'horizontal_field_class': 'col-md-9'
+}

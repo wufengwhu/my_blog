@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BI 数据开发门户</title>
+    <!-- Bootstrap -->
+    <link href="/static/css/bootstrap3/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap3/bootstrap-theme.min.css"
+          rel="stylesheet" id="bs-theme-stylesheet">
+    <link href="/static/assets/css/docs.min.css" rel="stylesheet">
+    <link href="/static/css/biportal.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootgrid/jquery.bootgrid.css">
+    <link href="/static/css/bootstrap-dialog/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/jquery-steps/jquery.steps.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    {#    <script async="" src="http://engine.carbonads.com/z/32341/azcarbon_2_1_0_HORIZ"></script>#}
+    {#        <script id="_carbonads_projs" type="text/javascript" src="//srv.carbonads.net/ads/C6AILKT.json?segment=placement:getbootstrapcom&amp;callback=_carbonads_go"></script>#}
+    {#        <script type="text/javascript" src="//fallbacks.carbonads.com/home/e99a260b94849497ea962f674f0aebd9/?144881073"></script>#}
+    {#    <style>.carbonad{display:block;background:#fdfdfd;background-image:-moz-linear-gradient(top,#f8f8f8,#fdfdfd);background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#f8f8f8),color-stop(1,#fdfdfd));border:1px solid #d5d5d5;font-family:Lucida Grande,Arial,Helvetica,sans-serif;font-size:11px;height:118px;line-height:15px;overflow:hidden;width:300px}.carbonad-img{border:none;display:inline;float:left;height:100px;margin:9px;width:130px}.carbonad-text{display:inline;float:left;width:142px;padding-top:13px}.carbonad-text a{color:#000;text-decoration:none;text-transform:none;}.carbonad-tag{float:left;margin-top:9px;text-align:center;width:142px;color:#999}.carbonad-tag a{color:#999;text-decoration:none}</style>#}
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+    <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://bi.yihaodian.com.cn">
+                {#                <img src="/static/img/bi-logo.jpg" alt="Brand" title="返回BI-Portal首页"#}
+                {#                height="50px" width="310px">#}
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                BI-Portal
+            </a>
+        </div>
+
+        <nav class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active dropdown">
+                    <a class="dropdown-toggle" role="button" id="data_deploy1"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        数据平台
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu " aria-labelledby="data_deploy1">
+                        <li class="disabled"><a href="#">查询分析器(Hive1)</a></li>
+                        <li class="disabled"><a href="#">查询分析器(Hive3-Spark)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">历史预览/下载</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">应用开发</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">数据市场</a></li>
+                <li><a href="http://wiki.yihaodian.com.cn/mediawiki/index.php/Realtime">实时数据</a></li>
+                <li><a href="http://wiki.yihaodian.com.cn/mediawiki/index.php/Bigdata">帮助指南</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><p class="navbar-text">Signed in as Wu Feng
+                    <span class="sr-only">(current)</span></p></li>
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" id="personal_info"
+                       data-toggle="dropdown" aria-label="View profile and more" aria-haspopup="true"
+                       aria-expanded="true">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="personal_info">
+                        <li><a href="#" onclick="f_logout()">退出</a></li>
+                        <li><a href="http://bi.yihaodian.com.cn/main/doHelp.action">帮助</a></li>
+                        <li><a href="mailto:BI_Operation@yhd.com" style="color:red;font-weight: bold;">报障</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+
+</body>
+</html>

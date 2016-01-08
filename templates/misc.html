@@ -1,0 +1,17 @@
+{% extends 'base_wide_dialog.html' %}
+
+{% load bootstrap3 %}
+
+{% block title %}
+    Miscellaneous
+{% endblock %}
+
+{% block content %}
+
+    {% bootstrap_button 'button' size='lg' %}
+
+    {% bootstrap_button 'button' size='medium' icon='info-sign' button_class="btn-primary" %}
+
+    {% bootstrap_alert "Something went wrong" alert_type='danger' %}
+
+{% endblock %}

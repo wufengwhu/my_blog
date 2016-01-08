@@ -1,8 +1,115 @@
-{% extends "base.html" %}
+{% extends "base_backup.html" %}
 {% load custom_markdown %}
 
 {% block content %}
-<div class="posts">
+    <head>
+        <title>My first script</title>
+        {#    <script src="/static/js/script02.js"></script>#}
+        <link rel="stylesheet" href="/static/css/figure-styled.css"/>
+        <!-- Bootstrap -->
+        <link href="/static/css/bootstrap3/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+    <div class="container">
+        <header role="banner">
+            <nav role="navigation">
+                <ul>
+                    <li><a href="#gaudi" title="Learn about Antoni Gaudi">Barcelona's Architect</a></li>
+                    <li lang="es"><a href="#sagrada-familia">La Sagrada Familia</a></li>
+                    <li><a href="#park-guell">Park Guell</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- 应用CSS后的第一栏 -->
+        <!-- ==== 开始主要内容 ==== -->
+        <main role="main">
+            <h1>Arts & Entertainment: Museums </h1>
+            <section>
+                <h2>Breaking News</h2>
+                <ul>... [标题列表] ...
+                </ul>
+            </section>
+            <article>
+                <h2>Gallery Opening Features the Inspired, Inspiring</h2>
+
+                <p>The <code>showPhoto()</code> function displays the full-size photo of the thumbnail in our <code>&lt;ul
+                    id= "thumbnail"&gt;</code> carousel list.</p>
+
+                <p>This CSS shorthand example applies a margin to all sides of paragraphs: <code>p { margin: 1.25em;
+                    }</code>. Take a look at <code>base.css</code> to see more
+                    examples.</p>
+
+                <p>Current progress:
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuenow="60"
+                         aria-valuemax="100" style="min-width: 6em; width: 60%;">
+                        <!-- <span class="sr-only">60% Complete</span> -->
+                        60%
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="          progressbar"
+                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                        <span class="sr-only">40% Complete (success)</span>
+                    </div>
+                </div>
+                </p>
+                <figure>
+                    <blockquote>
+                        <del>dasdsadasdas</del>
+                        I want all my senses engaged. Let me absorb the world's
+                        <ins>variety and uniqueness.</ins>
+                    </blockquote>
+                    <figcaption>
+                        <b>Figure 3:</b>
+                        Breakdown of Revenue by Industry
+                    </figcaption>
+                    <img src="/static/img/chart-revenue.png" width="180" height="143"
+                         alt="Revenue chart: Clothing 42%, Toys 36%, Food 22%"/>
+                </figure>
+                <p>He listened to <cite>Abbey Road</cite> while watching <cite>A Hard Day's Night </cite> and reading
+                    <cite>The Beatles Anthology</cite>.
+
+                <p>When he went to The Louvre, he learned that <cite>Mona Lisa</cite> is also known as <cite lang="it">La
+                    Gioconda </cite>.</p>
+                <!-- 文章的页脚,并非页面级的页脚 -->
+                <footer>
+                    <p>Leandra Allen is a freelance journalist who earned her degree in anthropology from the University
+                        of Copenhagen.
+                        <small>&copy; 2013 The Super ➝Store. All Rights Reserved.</small>
+                    </p>
+                    <address>You may reach her at
+                        <a href="mailto:  leandra@therunningwriter.com">
+                            leandra@therunningwriter.com</a>.
+                    </address>
+                </footer>
+            </article>
+        </main>
+        <!-- <h1 id="helloMessage">Barcelona's Architect</h1> -->
+        <!-- ==== 开始附注栏 ==== -->
+        <!-- 应用CSS后的第二栏 -->
+        <!-- <div class="sidebar">
+                                                                                <aside>
+                <!-- 次级导航 -->
+        <nav role="navigation">
+            <ul>
+                <li><a href="/arts/movies/"> Movies</a></li>
+                <li><a href="/arts/music/"> Music</a></li>
+                ...
+            </ul>
+        </nav>
+        </aside>
+    </div>
+    -->
+    <!-- ==== 开始页面级页脚 ==== -->
+    <footer role="contentinfo">
+        <!-- 辅助性链接并未包在nav中 -->
+        <ul> ...
+        </ul>
+    </footer>
+    </body>
+    <div class="posts">
         <p> About Me 正在建设中 </p>
-</div><!-- /.blog-post -->
-{% endblock %}
+    </div><!-- /.blog-post -->
+{% endblock %};

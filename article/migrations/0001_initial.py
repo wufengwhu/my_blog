@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import django.core.validators
+import uuid
 
 
 class Migration(migrations.Migration):
@@ -17,7 +19,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=100)),
                 ('category', models.CharField(max_length=50, blank=True)),
                 ('date_time', models.DateTimeField(auto_now_add=True)),
-                ('content', models.TextField(null=True, blank=True)),
+                ('content', models.TextField(blank=True, null=True)),
             ],
             options={
                 'ordering': ['-date_time'],
