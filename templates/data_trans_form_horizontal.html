@@ -9,7 +9,7 @@
     <script src="/static/js/bi-data-trans-form.js"></script>
 
     <form role="form" class="form-horizontal" method="post"
-          id="data-transfer-form" action="#" onsubmit="return onFinished()">
+          id="data-transfer-form" action="#" >
         {% csrf_token %}
         <h3>基础配置</h3>
 
@@ -53,9 +53,10 @@
         <fieldset>
             <legend>调度信息</legend>
             <p class="text-info">本页配置任务调度信息</p>
+            {% bootstrap_button "保存" button_type="submit"  %}
         </fieldset>
 
-        {% bootstrap_button "保存" button_type="submit" button_class="btn-primary" %}
+
 
     </form>
 

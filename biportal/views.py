@@ -7,7 +7,7 @@ from biportal.models import DataTransJobForm
 
 
 class FormHorizontalView(FormView):
-    template_name = 'form_horizontal.html'
+    template_name = 'data_trans_form_horizontal.html'
     form_class = DataTransJobForm
 
 def big_trans(request):
