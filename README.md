@@ -1,2 +1,2 @@
 # my_blog
-个人博客
+吴峰个人博客 by Django 
