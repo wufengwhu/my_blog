@@ -5,7 +5,7 @@
 
 /*创建数据交换任务列表gird*/
 var grid = $("#grid-transfer-data").bootgrid({
-    ajax: false,
+    ajax: true,
     ajaxSettings: {
         dataType: 'jsonp'
     },

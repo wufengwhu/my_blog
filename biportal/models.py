@@ -34,7 +34,8 @@ EXTRACT_METHODS = (
 
 class DataTransJob(models.Model):
     """ 数据交换任务的model """
-    HELP_TEXT_FOR_TABLE_NAME = '<i class=\"fa fa-info\"> 例如<code>dw.tablename,MySql</code>库表名前不需要<code>schema</code></i>'
+    HELP_TEXT_FOR_TABLE_NAME = '<i class=\"fa fa-info\"> ' \
+                               '例如<code>dw.tablename,MySql</code>库表名前不需要<code>schema</code></i>'
     job_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     job_description = models.TextField(verbose_name='作业简述', blank=False)
@@ -43,7 +44,8 @@ class DataTransJob(models.Model):
 
     db_d_infos = models.CharField(choices=DB_CHOICES, verbose_name='目标库', max_length=50, default="-1")
 
-    extract_options = models.CharField(choices=EXTRACT_METHODS, verbose_name='抽取方式', max_length=50, default='SQOOP_MR')
+    extract_options = models.CharField(choices=EXTRACT_METHODS, verbose_name='抽取方式', max_length=50,
+                                       default='SQOOP_MR')
 
     extract_duration = models.PositiveSmallIntegerField(default=10, blank=True, verbose_name='预计使用时长',
                                                         help_text='<i class=\"fa fa-info\"> 单位分钟</i>')
@@ -66,9 +68,12 @@ class DataTransJob(models.Model):
     mr_job_parallelism = models.PositiveSmallIntegerField(validators=[MaxValueValidator(20, "最大并行度不能超过20"),
                                                                       MinValueValidator(1, "最小并行度不能小与1")],
                                                           verbose_name='导出并行任务数', default=1,
-                                                          help_text='<i class=\"fa fa-info\"> 用来指定从hive导出数据的并发度</i>')
+                                                          help_text='<i class=\"fa fa-info\"> '
+                                                                    '用来指定从hive导出数据的并发度</i>')
     dynamic_parameter_list = models.CharField(verbose_name='动态参数列表', max_length=200, blank=True,
-                                              help_text='<i class=\"fa fa-info\"> 用<code>,</code>分隔, 命令行调用时按照列表顺序传参,例如:<code>param1,param2,...paramX</code></i>')
+                                              help_text='<i class=\"fa fa-info\"> '
+                                                        '用<code>,</code>分隔, 命令行调用时按照列表顺序传参,例如:'
+                                                        '<code>param1,param2,...paramX</code></i>')
 
     # hive作为目标库字段域
 
@@ -78,11 +83,14 @@ class DataTransJob(models.Model):
     d_table_field_list = models.CharField(verbose_name='字段列表', blank=True,
                                           max_length=200, help_text='<i class=\"fa fa-info\"> 缺省为全部字段 </i>')
     d_pretreatment_sql = models.TextField(verbose_name='预处理sql', blank=True,
-                                          help_text='<i class=\"fa fa-info\"> 例如:<code>delete from dw.tablename where date_id=date \'${param1}\'</code></i>')
+                                          help_text='<i class=\"fa fa-info\"> '
+                                                    '例如:<code>delete from dw.tablename where date_id=date '
+                                                    '\'${param1}\'</code></i>')
     d_posttreatment_sql = models.TextField(verbose_name='后处理sql', blank=True,
                                            help_text='<i class=\"fa fa-info\"> 默认为空</i>')
     is_transaction = models.CharField(verbose_name='事务', max_length=10, default='2',
-                                      choices=TRANSACTION_CHOICES, help_text='<i class=\"fa fa-info\">无特别需要,默认关闭</i>')
+                                      choices=TRANSACTION_CHOICES,
+                                      help_text='<i class=\"fa fa-info\">无特别需要,默认关闭</i>')
 
     create_time = models.DateTimeField(default=now())
 

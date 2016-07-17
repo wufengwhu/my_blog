@@ -14,13 +14,15 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import guardian
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+lz!ul!bjpq2#ey#l^e&bgp+j*i(pvp*idr^e%joj3+qp=36cd'
+SECRET_KEY = 'l&x9*ake#z8g=2db^(9g3n9wt0g0%h@r%okh)0@t5k&0qb--jp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,6 +48,7 @@ INSTALLED_APPS = (
     # 'bootstrap_admin',  # 要在django.contrib.admin前面
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',  # 添加这一行
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -60,9 +63,17 @@ INSTALLED_APPS = (
 )
 from django.conf import global_settings
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + [
     'django.core.context_processors.request',
+]
+
+import guardian
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
+
 BOOTSTRAP_ADMIN_SIDEBAR_MENU = True
 USERENA_ACTIVATION_REQUIRED = False
 
@@ -75,6 +86,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'userena.middleware.UserenaLocaleMiddleware'
 )
 
 ROOT_URLCONF = 'my_blog.urls'
@@ -106,8 +118,8 @@ TEMPLATES = [
 STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), '../static/').replace('\\', '/'),
     os.path.join(os.path.dirname(__file__), '../static/assets/').replace('\\', '/'),
-    '/Users/fengwu/my_blog/static',
-    '/Users/fengwu/my_blog/static/assets',
+    # '/Users/fengwu/my_blog/static',
+    # '/Users/fengwu/my_blog/static/assets',
     #    os.path.join( PROJECT_PATH,  'static').replace('\\','/'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
