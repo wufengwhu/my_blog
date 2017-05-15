@@ -14,3 +14,7 @@ while year <= numyears:
     print >> fw, "%3d %0.2f" % (year, principle)
     year +=1
 f.close()
+
+
+with open("somefile.txt") as somefile:
+    do_something(somefile)
